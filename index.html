@@ -1,139 +1,129 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>Picbox</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <!-- Inline CSS -->
-  <style>
-    * { box-sizing: border-box; margin:0; padding:0; }
-    body { font-family: Arial, sans-serif; line-height:1.6; }
-    header { background:#333; color:#fff; padding:20px; text-align:center; }
-    header img { max-height:50px; vertical-align:middle; }
-    header h1 { display:inline-block; margin-left:10px; font-size:2rem; vertical-align:middle; }
-    nav { background:#444; text-align:center; }
-    nav a { color:#fff; display:inline-block; margin:10px; text-decoration:none; }
-    section { padding:40px 20px; max-width:1000px; margin:0 auto; }
-    #gallery { display:grid; grid-template-columns:repeat(auto-fit,minmax(200px,1fr)); gap:10px; }
-    #gallery img { width:100%; cursor:pointer; border-radius:4px; }
-    /* Lightbox */
-    #lightbox { display:none; position:fixed; top:0; left:0; width:100%; height:100%; 
-                background:rgba(0,0,0,0.8); align-items:center; justify-content:center; }
-    #lightbox img { max-width:90%; max-height:90%; border:4px solid #fff; }
-    #lightbox:target { display:flex; }
-    /* About */
-    .team { display:grid; grid-template-columns:repeat(auto-fit,minmax(200px,1fr)); gap:20px; }
-    .member { background:#f9f9f9; padding:20px; border-radius:4px; text-align:center; }
-    .member h3 { margin-bottom:5px; }
-    /* Contact */
-    #contact a { color:#0066cc; text-decoration:none; }
-    /* Footer */
-    footer { background:#333; color:#aaa; text-align:center; padding:20px; font-size:0.9rem; }
-    @media(max-width:600px){ header h1 { display:block; margin-top:10px; } }
-  </style>
+<meta charset="UTF-8">
+<title>Picbox</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<style>
+  /* Core reset & layout */
+  * { margin:0; padding:0; box-sizing:border-box; }
+  body { font-family: 'Segoe UI', Tahoma, sans-serif; background:#f6f8fa; color:#333; }
+  header { background:#0055a5; color:#fff; padding:25px 20px; text-align:center; }
+  header img { max-height:60px; vertical-align:middle; }
+  header h1 { font-size:2.5rem; display:inline-block; margin-left:15px; vertical-align:middle; }
+  header p { margin-top:8px; font-size:1rem; opacity:0.9; }
+  nav { position:sticky; top:0; background:#fff; box-shadow:0 2px 5px rgba(0,0,0,0.1); z-index:1000; padding:10px; text-align:center;}
+  nav a { margin:0 18px; color:#0055a5; text-decoration:none; font-weight:600; transition:color .2s;}
+  nav a:hover { color:#003a72; }
+  section { padding:50px 20px; max-width:1100px; margin:0 auto; }
+  /* Gallery */
+  #gallery-header { font-size:2rem; color:#0055a5; margin-bottom:30px; text-align:center; }
+  #gallery { column-count:3; column-gap:15px; }
+  #gallery img { width:100%; margin-bottom:15px; transition: transform .3s, filter .3s; cursor:pointer; border-radius:6px; }
+  #gallery img:hover { transform:scale(1.03); filter: brightness(1.05); }
+  @media(max-width:900px){ #gallery { column-count:2; } }
+  @media(max-width:600px){ #gallery { column-count:1; } }
+  /* Lightbox overlay */
+  #lightbox { display:none; position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.9); align-items:center; justify-content:center; z-index:2000;}
+  #lightbox img { max-width:90%; max-height:90%; border-radius:8px; transition:transform .3s; }
+  /* team */
+  .team-section { text-align:center; }
+  .team { display:flex; justify-content:center; flex-wrap:wrap; gap:30px; margin-top:30px; }
+  .member { background:#fff; flex:1 1 260px; padding:25px; border-radius:8px; box-shadow:0 2px 6px rgba(0,0,0,0.1); }
+  .member h3 { color:#0055a5; margin-bottom:6px; }
+  .member p:nth-of-type(2) { font-style:italic; opacity:0.85; margin-bottom:10px; }
+  /* Contact */
+  #contact a { color:#0055a5; text-decoration:none; }
+  #contact a:hover { text-decoration:underline; }
+  /* Footer */
+  footer { background:#0055a5; color:#eee; text-align:center; padding:25px; margin-top:60px; font-size:0.9rem; }
+  footer a { color:#cce5ff; }
+</style>
 </head>
 <body>
 
-  <!-- Header with Logo & Tagline -->
-  <header>
-    <img src="logo.png" alt="Picbox Logo">
-    <h1>Picbox</h1>
-    <p>Your memories, captured beautifully.</p>
-  </header>
+<header>
+  <img src="https://github.com/Sandie11/PICBOX/blob/main/photo_2025-07-25_14-53-57.jpg?raw=true" alt="Picbox Logo">
+  <h1>Picbox</h1>
+  <p>Your memories, captured beautifully.</p>
+</header>
 
-  <!-- Navigation -->
-  <nav>
-    <a href="#gallery">Gallery</a>
-    <a href="#about">About</a>
-    <a href="#contact">Contact</a>
-  </nav>
+<nav>
+  <a href="#gallery">Gallery</a><a href="#about">About</a><a href="#contact">Contact</a>
+</nav>
 
-  <!-- Gallery Section -->
-  <section id="gallery">
-    <h2>Our Work</h2>
-    <!-- 12 Random Picsum Images -->
-    <!-- Wrap each in a link to #lightbox with fragment = its ID -->
-    <a href="#img1"><img src="https://picsum.photos/400/300?random=1" alt=""></a>
-    <a href="#img2"><img src="https://picsum.photos/400/300?random=2" alt=""></a>
-    <a href="#img3"><img src="https://picsum.photos/400/300?random=3" alt=""></a>
-    <a href="#img4"><img src="https://picsum.photos/400/300?random=4" alt=""></a>
-    <a href="#img5"><img src="https://picsum.photos/400/300?random=5" alt=""></a>
-    <a href="#img6"><img src="https://picsum.photos/400/300?random=6" alt=""></a>
-    <a href="#img7"><img src="https://picsum.photos/400/300?random=7" alt=""></a>
-    <a href="#img8"><img src="https://picsum.photos/400/300?random=8" alt=""></a>
-    <a href="#img9"><img src="https://picsum.photos/400/300?random=9" alt=""></a>
-    <a href="#img10"><img src="https://picsum.photos/400/300?random=10" alt=""></a>
-    <a href="#img11"><img src="https://picsum.photos/400/300?random=11" alt=""></a>
-    <a href="#img12"><img src="https://picsum.photos/400/300?random=12" alt=""></a>
-  </section>
-
-  <!-- Lightbox Overlays -->
-  <div id="lightbox">
-    <!-- Clicking backdrop closes it -->
-    <a href="#" style="position:absolute;top:0;left:0;width:100%;height:100%;"></a>
-    <img id="lb-img" src="" alt="">
+<section id="gallery">
+  <div id="gallery-header">Our Work</div>
+  <div id="gallery">
+    <img src="https://picsum.photos/seed/201/500/400" alt="">
+    <img src="https://picsum.photos/seed/202/500/800" alt="">
+    <img src="https://picsum.photos/seed/203/800/600" alt="">
+    <img src="https://picsum.photos/seed/204/600/900" alt="">
+    <img src="https://picsum.photos/seed/205/500/700" alt="">
+    <img src="https://picsum.photos/seed/206/700/500" alt="">
   </div>
+</section>
 
-  <!-- About Section -->
-  <section id="about">
-    <h2>About Our Team</h2>
-    <div class="team">
-      <div class="member">
-        <h3>Sandeep C.</h3>
-        <p><em>Founder & Lead Photographer</em></p>
-        <p>Bringing moments to life through the lens since 2018.</p>
-      </div>
-      <div class="member">
-        <h3>Priya R.</h3>
-        <p><em>Creative Director</em></p>
-        <p>Crafting visual stories with a keen eye for detail.</p>
-      </div>
-      <div class="member">
-        <h3>Arjun K.</h3>
-        <p><em>Web Developer</em></p>
-        <p>Building seamless online experiences for our gallery.</p>
-      </div>
+<div id="lightbox"><img id="lb-img" src="" alt=""></div>
+
+<section id="about" class="team-section">
+  <h2>About Our Team</h2>
+  <div class="team">
+    <div class="member">
+      <h3>Sai Nath</h3>
+      <p>Co‑Founder & Photographer</p>
+      <p>Expert in portrait and event photography with a creative edge.</p>
     </div>
-  </section>
+    <div class="member">
+      <h3>Mani Chandra</h3>
+      <p>Co‑Founder & Creative Director</p>
+      <p>Visual storyteller focused on branding and experience design.</p>
+    </div>
+    <div class="member">
+      <h3>Sandeep C.</h3>
+      <p>Co‑Founder & Lead Photographer</p>
+      <p>Championing memorable experiences through the lens since 2018.</p>
+    </div>
+  </div>
+</section>
 
-  <!-- Contact Section -->
-  <section id="contact">
-    <h2>Contact & Feedback</h2>
-    <p>Phone: <a href="tel:+919381635559">+91 93816 35559</a> | <a href="tel:+916304423664">+91 63044 23664</a></p>
-    <p>Email: <a href="mailto:Cherukusandeep83@gmail.com">Cherukusandeep83@gmail.com</a></p>
-    <p>Website: <a href="https://www.picbox.com" target="_blank">www.picbox.com</a></p>
-    <p>Address: Dilsukhnagar, Hyderabad, 500060</p>
-    <p>Follow us: 
-      <a href="#" target="_blank">Facebook</a> • 
-      <a href="#" target="_blank">Instagram</a> • 
-      <a href="#" target="_blank">Twitter</a>
-    </p>
-  </section>
+<section id="contact">
+  <h2>Get In Touch</h2>
+  <p>Phone: <a href="tel:+919381635559">+91 93816 35559</a> | <a href="tel:+916304423664">+91 63044 23664</a></p>
+  <p>Email: <a href="mailto:Cherukusandeep83@gmail.com">Cherukusandeep83@gmail.com</a></p>
+  <p>Website: <a href="https://www.picbox.com" target="_blank">www.picbox.com</a></p>
+  <p>Address: Dilsukhnagar, Hyderabad, 500060</p>
+</section>
 
-  <!-- Footer -->
-  <footer>
-    &copy; 2025 Picbox. All rights reserved. Photos via <a href="https://picsum.photos/" target="_blank">Picsum</a>.
-  </footer>
+<footer>
+  &copy; 2025 Picbox. All rights reserved. Images courtesy of <a href="https://picsum.photos/" target="_blank">Picsum</a>.
+</footer>
 
-  <!-- Inline JS -->
-  <script>
-    // Lightbox functionality
-    document.querySelectorAll('#gallery a').forEach(link => {
-      link.addEventListener('click', e => {
-        e.preventDefault();
-        const imgSrc = link.querySelector('img').src.replace('/400/300','/800/600');
-        const lb = document.getElementById('lightbox');
-        document.getElementById('lb-img').src = imgSrc;
-        lb.style.display = 'flex';
-      });
-    });
-    // Close when clicking backdrop
-    document.getElementById('lightbox').addEventListener('click', e => {
-      if (e.target.id === 'lightbox') {
-        e.currentTarget.style.display = 'none';
-      }
-    });
-  </script>
-
+<script>
+(function(){
+  const imgs = [...document.querySelectorAll('#gallery img')];
+  let idx = -1;
+  imgs.forEach((img,i)=>{
+    img.addEventListener('click', ()=>{ idx=i; openLB(img); });
+  });
+  const lb = document.getElementById('lightbox'), lbImg = document.getElementById('lb-img');
+  function openLB(img){
+    lbImg.src = img.src;
+    lb.style.display='flex';
+  }
+  lb.addEventListener('click', e=>{
+    e.stopPropagation();
+    idx = (idx+1)%imgs.length;
+    lbImg.src = imgs[idx].src;
+  });
+  document.addEventListener('keydown', e=>{
+    if(lb.style.display==='flex'){
+      if(e.key==='Escape') lb.style.display='none';
+      if(e.key==='ArrowRight') lbImg.src = imgs[(idx=(idx+1)%imgs.length)].src;
+      if(e.key==='ArrowLeft') lbImg.src = imgs[(idx=(idx-1+imgs.length)%imgs.length)].src;
+    }
+  });
+})();
+</script>
 </body>
 </html>
