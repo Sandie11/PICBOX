@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Picbox</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <!-- Inline CSS -->
+  <style>
+    * { box-sizing: border-box; margin:0; padding:0; }
+    body { font-family: Arial, sans-serif; line-height:1.6; }
+    header { background:#333; color:#fff; padding:20px; text-align:center; }
+    header img { max-height:50px; vertical-align:middle; }
+    header h1 { display:inline-block; margin-left:10px; font-size:2rem; vertical-align:middle; }
+    nav { background:#444; text-align:center; }
+    nav a { color:#fff; display:inline-block; margin:10px; text-decoration:none; }
+    section { padding:40px 20px; max-width:1000px; margin:0 auto; }
+    #gallery { display:grid; grid-template-columns:repeat(auto-fit,minmax(200px,1fr)); gap:10px; }
+    #gallery img { width:100%; cursor:pointer; border-radius:4px; }
+    /* Lightbox */
+    #lightbox { display:none; position:fixed; top:0; left:0; width:100%; height:100%; 
+                background:rgba(0,0,0,0.8); align-items:center; justify-content:center; }
+    #lightbox img { max-width:90%; max-height:90%; border:4px solid #fff; }
+    #lightbox:target { display:flex; }
+    /* About */
+    .team { display:grid; grid-template-columns:repeat(auto-fit,minmax(200px,1fr)); gap:20px; }
+    .member { background:#f9f9f9; padding:20px; border-radius:4px; text-align:center; }
+    .member h3 { margin-bottom:5px; }
+    /* Contact */
+    #contact a { color:#0066cc; text-decoration:none; }
+    /* Footer */
+    footer { background:#333; color:#aaa; text-align:center; padding:20px; font-size:0.9rem; }
+    @media(max-width:600px){ header h1 { display:block; margin-top:10px; } }
+  </style>
+</head>
+<body>
+
+  <!-- Header with Logo & Tagline -->
+  <header>
+    <img src="logo.png" alt="Picbox Logo">
+    <h1>Picbox</h1>
+    <p>Your memories, captured beautifully.</p>
+  </header>
+
+  <!-- Navigation -->
+  <nav>
+    <a href="#gallery">Gallery</a>
+    <a href="#about">About</a>
+    <a href="#contact">Contact</a>
+  </nav>
+
+  <!-- Gallery Section -->
+  <section id="gallery">
+    <h2>Our Work</h2>
+    <!-- 12 Random Picsum Images -->
+    <!-- Wrap each in a link to #lightbox with fragment = its ID -->
+    <a href="#img1"><img src="https://picsum.photos/400/300?random=1" alt=""></a>
+    <a href="#img2"><img src="https://picsum.photos/400/300?random=2" alt=""></a>
+    <a href="#img3"><img src="https://picsum.photos/400/300?random=3" alt=""></a>
+    <a href="#img4"><img src="https://picsum.photos/400/300?random=4" alt=""></a>
+    <a href="#img5"><img src="https://picsum.photos/400/300?random=5" alt=""></a>
+    <a href="#img6"><img src="https://picsum.photos/400/300?random=6" alt=""></a>
+    <a href="#img7"><img src="https://picsum.photos/400/300?random=7" alt=""></a>
+    <a href="#img8"><img src="https://picsum.photos/400/300?random=8" alt=""></a>
+    <a href="#img9"><img src="https://picsum.photos/400/300?random=9" alt=""></a>
+    <a href="#img10"><img src="https://picsum.photos/400/300?random=10" alt=""></a>
+    <a href="#img11"><img src="https://picsum.photos/400/300?random=11" alt=""></a>
+    <a href="#img12"><img src="https://picsum.photos/400/300?random=12" alt=""></a>
+  </section>
+
+  <!-- Lightbox Overlays -->
+  <div id="lightbox">
+    <!-- Clicking backdrop closes it -->
+    <a href="#" style="position:absolute;top:0;left:0;width:100%;height:100%;"></a>
+    <img id="lb-img" src="" alt="">
+  </div>
+
+  <!-- About Section -->
+  <section id="about">
+    <h2>About Our Team</h2>
+    <div class="team">
+      <div class="member">
+        <h3>Sandeep C.</h3>
+        <p><em>Founder & Lead Photographer</em></p>
+        <p>Bringing moments to life through the lens since 2018.</p>
+      </div>
+      <div class="member">
+        <h3>Priya R.</h3>
+        <p><em>Creative Director</em></p>
+        <p>Crafting visual stories with a keen eye for detail.</p>
+      </div>
+      <div class="member">
+        <h3>Arjun K.</h3>
+        <p><em>Web Developer</em></p>
+        <p>Building seamless online experiences for our gallery.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Contact Section -->
+  <section id="contact">
+    <h2>Contact & Feedback</h2>
+    <p>Phone: <a href="tel:+919381635559">+91 93816 35559</a> | <a href="tel:+916304423664">+91 63044 23664</a></p>
+    <p>Email: <a href="mailto:Cherukusandeep83@gmail.com">Cherukusandeep83@gmail.com</a></p>
+    <p>Website: <a href="https://www.picbox.com" target="_blank">www.picbox.com</a></p>
+    <p>Address: Dilsukhnagar, Hyderabad, 500060</p>
+    <p>Follow us: 
+      <a href="#" target="_blank">Facebook</a> • 
+      <a href="#" target="_blank">Instagram</a> • 
+      <a href="#" target="_blank">Twitter</a>
+    </p>
+  </section>
+
+  <!-- Footer -->
+  <footer>
+    &copy; 2025 Picbox. All rights reserved. Photos via <a href="https://picsum.photos/" target="_blank">Picsum</a>.
+  </footer>
+
+  <!-- Inline JS -->
+  <script>
+    // Lightbox functionality
+    document.querySelectorAll('#gallery a').forEach(link => {
+      link.addEventListener('click', e => {
+        e.preventDefault();
+        const imgSrc = link.querySelector('img').src.replace('/400/300','/800/600');
+        const lb = document.getElementById('lightbox');
+        document.getElementById('lb-img').src = imgSrc;
+        lb.style.display = 'flex';
+      });
+    });
+    // Close when clicking backdrop
+    document.getElementById('lightbox').addEventListener('click', e => {
+      if (e.target.id === 'lightbox') {
+        e.currentTarget.style.display = 'none';
+      }
+    });
+  </script>
+
+</body>
+</html>
