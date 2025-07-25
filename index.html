@@ -1,48 +1,59 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<title>Picbox</title>
-<meta name="viewport" content="width=device-width,initial-scale=1">
-<style>
-  *{margin:0;padding:0;box-sizing:border-box;}
-  body{font-family:'Segoe UI',sans-serif;background:#eef2f5;color:#333;}
-  /* Sticky header + nav */
-  .topbar {position:sticky;top:0;background:#0055a5;color:#fff;display:flex;align-items:center;justify-content:space-between;padding:15px 20px;z-index:1000;}
-  .logo {display:flex;align-items:center;}
-  .logo img {height:50px;}
-  .logo h1 {margin-left:10px;font-size:1.8rem;}
-  nav a {color:#fff;margin-left:20px;text-decoration:none;font-weight:600;transition:opacity .2s;}
-  nav a:hover {opacity:.7;}
-  /* Section styling */
-  section{padding:50px 20px;max-width:1100px;margin:auto;opacity:0;transform:translateY(20px);transition:opacity .6s,transform .6s;}
-  .visible{opacity:1;transform:translateY(0);}
-  h2{color:#0055a5;margin-bottom:20px;text-align:center;}
-  /* Gallery grid */
-  #gallery-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:15px;}
-  #gallery-grid img{width:100%;border-radius:6px;cursor:pointer;opacity:0;transform:scale(0.95);transition:opacity .5s,transform .5s;}
-  #gallery-grid img.visible{opacity:1;transform:scale(1);}
-  /* Lightbox */
-  #lightbox{display:none;position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,0.9);align-items:center;justify-content:center;z-index:2000;}
-  #lightbox img{max-width:90%;max-height:90%;border-radius:8px;}
-  /* Team */
-  .team{display:flex;flex-wrap:wrap;justify-content:center;gap:30px;margin-top:20px;}
-  .member{background:#fff;flex:1 1 260px;padding:25px;border-radius:8px;box-shadow:0 2px 6px rgba(0,0,0,0.1);}
-  .member h3{color:#0055a5;margin-bottom:6px;}
-  .member p:nth-child(2){font-style:italic;opacity:.85;margin-bottom:10px;}
-  /* Contact */
-  #contact p{margin:8px 0;text-align:center;}
-  #contact a{color:#0055a5;text-decoration:none;}
-  #contact a:hover{text-decoration:underline;}
-  /* Footer */
-  footer{background:#0055a5;color:#eee;text-align:center;padding:20px;margin-top:40px;font-size:.9rem;}
-  footer a{color:#cce5ff;text-decoration:none;}
-  /* Responsive tweaks */
-  @media(max-width:600px){
-    .logo h1{font-size:1.4rem;}
-    nav a{margin-left:10px;font-size:.9rem;}
-  }
-</style>
+  <meta charset="UTF-8">
+  <title>Picbox</title>
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <style>
+    *{margin:0;padding:0;box-sizing:border-box;}
+    body{font-family:'Segoe UI',sans-serif;background:#eef2f5;color:#333;}
+    /* Sticky header + nav */
+    .topbar {position:sticky;top:0;background:#0055a5;color:#fff;
+      display:flex;align-items:center;justify-content:space-between;
+      padding:15px 20px;z-index:1000;}
+    .logo {display:flex;align-items:center;}
+    .logo img {height:50px;}
+    .logo h1 {margin-left:10px;font-size:1.8rem;}
+    nav a {color:#fff;margin-left:20px;text-decoration:none;font-weight:600;transition:opacity .2s;}
+    nav a:hover {opacity:.7;}
+    /* Tagline */
+    #tagline {padding:20px;text-align:center;background:#fff;}
+    #tagline h2 {color:#0055a5;font-size:1.4rem;font-style:italic;}
+    /* Section styling */
+    section{padding:50px 20px;max-width:1100px;margin:auto;
+      opacity:0;transform:translateY(20px);transition:opacity .6s,transform .6s;}
+    section.visible{opacity:1;transform:translateY(0);}
+    h2.section-title{color:#0055a5;margin-bottom:20px;text-align:center;}
+    /* Gallery grid */
+    #gallery-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:15px;}
+    #gallery-grid img{width:100%;border-radius:6px;cursor:pointer;
+      opacity:0;transform:scale(0.95);transition:opacity .5s,transform .5s;}
+    #gallery-grid img.visible{opacity:1;transform:scale(1);}
+    /* Lightbox */
+    #lightbox{display:none;position:fixed;top:0;left:0;width:100%;height:100%;
+      background:rgba(0,0,0,0.9);align-items:center;justify-content:center;z-index:2000;}
+    #lightbox img{max-width:90%;max-height:90%;border-radius:8px;}
+    /* Team */
+    .team{display:flex;flex-wrap:wrap;justify-content:center;gap:30px;margin-top:20px;}
+    .member{background:#fff;flex:1 1 260px;padding:25px;border-radius:8px;
+      box-shadow:0 2px 6px rgba(0,0,0,0.1);}
+    .member h3{color:#0055a5;margin-bottom:6px;}
+    .member p:nth-child(2){font-style:italic;opacity:.85;margin-bottom:10px;}
+    /* Contact */
+    #contact h2{text-align:center;color:#0055a5;margin-bottom:20px;}
+    #contact p{text-align:center;margin:8px 0;}
+    #contact a{color:#0055a5;text-decoration:none;}
+    #contact a:hover{text-decoration:underline;}
+    /* Footer */
+    footer{background:#0055a5;color:#eee;text-align:center;padding:20px;
+      margin-top:40px;font-size:.9rem;}
+    footer a{color:#cce5ff;text-decoration:none;}
+    /* Responsive tweaks */
+    @media(max-width:600px){
+      .logo h1{font-size:1.4rem;}
+      nav a{margin-left:10px;font-size:.9rem;}
+    }
+  </style>
 </head>
 <body>
 
@@ -59,24 +70,29 @@
     </nav>
   </div>
 
+  <!-- Tagline -->
+  <div id="tagline">
+    <h2>Your memories, captured beautifully.</h2>
+  </div>
+
   <!-- Gallery Section -->
   <section id="gallery">
-    <h2>Gallery</h2>
+    <h2 class="section-title">Gallery</h2>
     <div id="gallery-grid">
-      <!-- 13 images -->
-      <img src="https://picsum.photos/seed/301/400/300" alt="">
-      <img src="https://picsum.photos/seed/302/400/500" alt="">
-      <img src="https://picsum.photos/seed/303/400/400" alt="">
-      <img src="https://picsum.photos/seed/304/400/600" alt="">
-      <img src="https://picsum.photos/seed/305/400/350" alt="">
-      <img src="https://picsum.photos/seed/306/400/450" alt="">
-      <img src="https://picsum.photos/seed/307/400/550" alt="">
-      <img src="https://picsum.photos/seed/308/400/300" alt="">
-      <img src="https://picsum.photos/seed/309/400/400" alt="">
-      <img src="https://picsum.photos/seed/310/400/500" alt="">
-      <img src="https://picsum.photos/seed/311/400/450" alt="">
-      <img src="https://picsum.photos/seed/312/400/600" alt="">
-      <img src="https://picsum.photos/seed/313/400/350" alt="">
+      <!-- 13 placeholders -->
+      <img class="random-img" alt="">
+      <img class="random-img" alt="">
+      <img class="random-img" alt="">
+      <img class="random-img" alt="">
+      <img class="random-img" alt="">
+      <img class="random-img" alt="">
+      <img class="random-img" alt="">
+      <img class="random-img" alt="">
+      <img class="random-img" alt="">
+      <img class="random-img" alt="">
+      <img class="random-img" alt="">
+      <img class="random-img" alt="">
+      <img class="random-img" alt="">
     </div>
   </section>
 
@@ -85,7 +101,7 @@
 
   <!-- About Section -->
   <section id="about">
-    <h2>About Our Team</h2>
+    <h2 class="section-title">About Our Team</h2>
     <div class="team">
       <div class="member">
         <h3>Sandeep C.</h3>
@@ -116,41 +132,45 @@
 
   <!-- Footer -->
   <footer>
-    &copy; 2025 Picbox. All rights reserved.   <p style="font-style: italic; color: #666; font-size: 1.1em;">Your memories, captured beautifully.</p>.
+    &copy; 2025 Picbox. All rights reserved. Photos via <a href="https://picsum.photos/" target="_blank">Picsum</a>.
   </footer>
 
   <script>
   (function(){
-    // Scroll-triggered section + image reveal
-    const sections = [...document.querySelectorAll('section')];
-    const imgs = [...document.querySelectorAll('#gallery-grid img')];
-    function reveal(){
-      sections.forEach(s=>{ if(s.getBoundingClientRect().top < window.innerHeight - 80) s.classList.add('visible'); });
-      imgs.forEach(i=>{ if(i.getBoundingClientRect().top < window.innerHeight - 50) i.classList.add('visible'); });
+    // Reveal on scroll
+    const secs = document.querySelectorAll('section'), imgs = document.querySelectorAll('.random-img');
+    function onScroll(){
+      secs.forEach(s=>{ if(s.getBoundingClientRect().top < window.innerHeight -100) s.classList.add('visible'); });
+      imgs.forEach(i=>{ if(i.getBoundingClientRect().top < window.innerHeight -50) i.classList.add('visible'); });
     }
-    window.addEventListener('scroll', reveal);
-    reveal();
+    window.addEventListener('scroll', onScroll);
+    onScroll();
+
+    // Randomize gallery images
+    imgs.forEach((img,i)=>{
+      const seed = Date.now() + i;
+      img.src = `https://picsum.photos/seed/${seed}/400/300`;
+    });
 
     // Lightbox
     let idx=0;
     imgs.forEach((img,i)=> img.addEventListener('click',()=>{
-      idx=i;
+      idx = i;
       lbShow(img.src);
     }));
-    const lb = document.getElementById('lightbox'),
-          lbImg = document.getElementById('lb-img');
+    const lb = document.getElementById('lightbox'), lbImg = document.getElementById('lb-img');
     function lbShow(src){
-      lbImg.src = src;
+      lbImg.src = src.replace('/400/300','/800/600');
       lb.style.display = 'flex';
     }
     lb.addEventListener('click', e=>{
-      if(e.target===lb) lb.style.display = 'none';
+      if(e.target===lb) lb.style.display='none';
     });
     document.addEventListener('keydown', e=>{
       if(lb.style.display==='flex'){
         if(e.key==='Escape') lb.style.display='none';
-        if(e.key==='ArrowRight'){ idx=(idx+1)%imgs.length; lbImg.src=imgs[idx].src; }
-        if(e.key==='ArrowLeft'){ idx=(idx-1+imgs.length)%imgs.length; lbImg.src=imgs[idx].src; }
+        if(e.key==='ArrowRight'){ idx=(idx+1)%imgs.length; lbImg.src=imgs[idx].src.replace('/400/300','/800/600'); }
+        if(e.key==='ArrowLeft'){ idx=(idx-1+imgs.length)%imgs.length; lbImg.src=imgs[idx].src.replace('/400/300','/800/600'); }
       }
     });
   })();
